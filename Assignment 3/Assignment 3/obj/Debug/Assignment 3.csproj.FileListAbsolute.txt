@@ -1,0 +1,2 @@
+C:\Users\Emil\Documents\Visual Studio 2015\Projects\Assignment 3\Assignment 3\bin\Debug\Assignment 3.exe.config
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\bin\Debug\Assignment 3.exe.config
