@@ -35,8 +35,8 @@
             this.AxFoodProducer = new System.Windows.Forms.PictureBox();
             this.Producers = new System.Windows.Forms.Label();
             this.ScanLabelProducer = new System.Windows.Forms.Label();
-            this.arlaLabel = new System.Windows.Forms.Label();
-            this.AxFoodBox = new System.Windows.Forms.Label();
+            this.ArlaLabelProducing = new System.Windows.Forms.Label();
+            this.AxFoodLabelProducing = new System.Windows.Forms.Label();
             this.StatusScan = new System.Windows.Forms.Label();
             this.StatusArla = new System.Windows.Forms.Label();
             this.StatusAxFood = new System.Windows.Forms.Label();
@@ -51,8 +51,8 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.IcaConsumers = new System.Windows.Forms.Label();
-            this.CoopCons = new System.Windows.Forms.Label();
-            this.CitygrossLabel = new System.Windows.Forms.Label();
+            this.CoopConsumers = new System.Windows.Forms.Label();
+            this.CitygrossConsumers = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.IcaListbox = new System.Windows.Forms.ListBox();
             this.CoopListbox = new System.Windows.Forms.ListBox();
@@ -159,23 +159,23 @@
             this.ScanLabelProducer.TabIndex = 6;
             this.ScanLabelProducer.Text = "Producer: Scan";
             // 
-            // arlaLabel
+            // ArlaLabelProducing
             // 
-            this.arlaLabel.AutoSize = true;
-            this.arlaLabel.Location = new System.Drawing.Point(46, 169);
-            this.arlaLabel.Name = "arlaLabel";
-            this.arlaLabel.Size = new System.Drawing.Size(74, 13);
-            this.arlaLabel.TabIndex = 7;
-            this.arlaLabel.Text = "Producer: Arla";
+            this.ArlaLabelProducing.AutoSize = true;
+            this.ArlaLabelProducing.Location = new System.Drawing.Point(46, 169);
+            this.ArlaLabelProducing.Name = "ArlaLabelProducing";
+            this.ArlaLabelProducing.Size = new System.Drawing.Size(74, 13);
+            this.ArlaLabelProducing.TabIndex = 7;
+            this.ArlaLabelProducing.Text = "Producer: Arla";
             // 
-            // AxFoodBox
+            // AxFoodLabelProducing
             // 
-            this.AxFoodBox.AutoSize = true;
-            this.AxFoodBox.Location = new System.Drawing.Point(48, 305);
-            this.AxFoodBox.Name = "AxFoodBox";
-            this.AxFoodBox.Size = new System.Drawing.Size(92, 13);
-            this.AxFoodBox.TabIndex = 8;
-            this.AxFoodBox.Text = "Producer: AxFood";
+            this.AxFoodLabelProducing.AutoSize = true;
+            this.AxFoodLabelProducing.Location = new System.Drawing.Point(48, 305);
+            this.AxFoodLabelProducing.Name = "AxFoodLabelProducing";
+            this.AxFoodLabelProducing.Size = new System.Drawing.Size(92, 13);
+            this.AxFoodLabelProducing.TabIndex = 8;
+            this.AxFoodLabelProducing.Text = "Producer: AxFood";
             // 
             // StatusScan
             // 
@@ -301,23 +301,23 @@
             this.IcaConsumers.TabIndex = 22;
             this.IcaConsumers.Text = "Cousumers : ICA";
             // 
-            // CoopCons
+            // CoopConsumers
             // 
-            this.CoopCons.AutoSize = true;
-            this.CoopCons.Location = new System.Drawing.Point(369, 174);
-            this.CoopCons.Name = "CoopCons";
-            this.CoopCons.Size = new System.Drawing.Size(90, 13);
-            this.CoopCons.TabIndex = 23;
-            this.CoopCons.Text = "Consumers: Coop";
+            this.CoopConsumers.AutoSize = true;
+            this.CoopConsumers.Location = new System.Drawing.Point(369, 174);
+            this.CoopConsumers.Name = "CoopConsumers";
+            this.CoopConsumers.Size = new System.Drawing.Size(90, 13);
+            this.CoopConsumers.TabIndex = 23;
+            this.CoopConsumers.Text = "Consumers: Coop";
             // 
-            // CitygrossLabel
+            // CitygrossConsumers
             // 
-            this.CitygrossLabel.AutoSize = true;
-            this.CitygrossLabel.Location = new System.Drawing.Point(369, 309);
-            this.CitygrossLabel.Name = "CitygrossLabel";
-            this.CitygrossLabel.Size = new System.Drawing.Size(131, 13);
-            this.CitygrossLabel.TabIndex = 24;
-            this.CitygrossLabel.Text = "Consumers: CITY GROOS";
+            this.CitygrossConsumers.AutoSize = true;
+            this.CitygrossConsumers.Location = new System.Drawing.Point(369, 309);
+            this.CitygrossConsumers.Name = "CitygrossConsumers";
+            this.CitygrossConsumers.Size = new System.Drawing.Size(131, 13);
+            this.CitygrossConsumers.TabIndex = 24;
+            this.CitygrossConsumers.Text = "Consumers: CITY GROOS";
             // 
             // pictureBox4
             // 
@@ -690,8 +690,8 @@
             this.Controls.Add(this.CoopListbox);
             this.Controls.Add(this.IcaListbox);
             this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.CitygrossLabel);
-            this.Controls.Add(this.CoopCons);
+            this.Controls.Add(this.CitygrossConsumers);
+            this.Controls.Add(this.CoopConsumers);
             this.Controls.Add(this.IcaConsumers);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -706,8 +706,8 @@
             this.Controls.Add(this.StatusAxFood);
             this.Controls.Add(this.StatusArla);
             this.Controls.Add(this.StatusScan);
-            this.Controls.Add(this.AxFoodBox);
-            this.Controls.Add(this.arlaLabel);
+            this.Controls.Add(this.AxFoodLabelProducing);
+            this.Controls.Add(this.ArlaLabelProducing);
             this.Controls.Add(this.ScanLabelProducer);
             this.Controls.Add(this.Producers);
             this.Controls.Add(this.AxFoodProducer);
@@ -740,8 +740,8 @@
         private System.Windows.Forms.PictureBox AxFoodProducer;
         private System.Windows.Forms.Label Producers;
         private System.Windows.Forms.Label ScanLabelProducer;
-        private System.Windows.Forms.Label arlaLabel;
-        private System.Windows.Forms.Label AxFoodBox;
+        private System.Windows.Forms.Label ArlaLabelProducing;
+        private System.Windows.Forms.Label AxFoodLabelProducing;
         private System.Windows.Forms.Label StatusScan;
         private System.Windows.Forms.Label StatusArla;
         private System.Windows.Forms.Label StatusAxFood;
@@ -756,8 +756,8 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label IcaConsumers;
-        private System.Windows.Forms.Label CoopCons;
-        private System.Windows.Forms.Label CitygrossLabel;
+        private System.Windows.Forms.Label CoopConsumers;
+        private System.Windows.Forms.Label CitygrossConsumers;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.ListBox IcaListbox;
         private System.Windows.Forms.ListBox CoopListbox;

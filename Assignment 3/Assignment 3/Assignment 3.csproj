@@ -52,8 +52,12 @@
     <Compile Include="Assignment3.Designer.cs">
       <DependentUpon>Assignment3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factory.cs" />
+    <Compile Include="FoodItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shop.cs" />
+    <Compile Include="Storage.cs" />
     <EmbeddedResource Include="Assignment3.resx">
       <DependentUpon>Assignment3.cs</DependentUpon>
     </EmbeddedResource>
