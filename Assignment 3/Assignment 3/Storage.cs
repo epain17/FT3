@@ -10,14 +10,14 @@ namespace Assignment_3
     class Storage
     {
         private Queue<FoodItem> storagequeue = new Queue<FoodItem>();
-        private int numberOfItems;
+        private int totalNumberOfItems;
         private float totalWeigth;
         private float totalVolume;
         private Mutex m = new Mutex();
 
         public Storage(int NumberOfITems, float TotalWeight, float TotalVolume)
         {
-            numberOfItems = NumberOfITems;
+            totalNumberOfItems = NumberOfITems;
             totalWeigth = TotalWeight;
             totalVolume = TotalVolume;
         }
@@ -27,7 +27,7 @@ namespace Assignment_3
             //Kanske måste lägga till if statements för att 
             //kolla maximala vikten och volumen för lagret
             m.WaitOne();
-            if (storagequeue.Count() != numberOfItems)
+            if (storagequeue.Count() != totalNumberOfItems)
             {
                 totalWeigth += Food.GetWeight;
                 totalVolume += Food.GetVolume;
@@ -36,21 +36,50 @@ namespace Assignment_3
             m.ReleaseMutex();
         }
 
-        public void RemoveFromStorage(FoodItem Food)
+        public FoodItem RemoveFromStorage()
         {
-            m.WaitOne();
-            if(storagequeue.Count() != 0)
+            if (storagequeue.Count() != 0)
             {
-                totalWeigth -= Food.GetWeight;
-                totalVolume -= Food.GetVolume;
-                storagequeue.Dequeue();
+                m.WaitOne();
+                FoodItem temp = storagequeue.Dequeue();
+
+
+                totalWeigth -= temp.GetWeight;
+                totalVolume -= temp.GetVolume;
+                m.ReleaseMutex();
+                return temp;
             }
-            m.ReleaseMutex();
+            return null;
         }
 
         public int StorageCapacity
         {
-            get { return numberOfItems; }
+            get { return totalNumberOfItems; }
+        }
+
+        public bool IsStorageFull
+        {
+            get
+            {
+                if (storagequeue.Count() != totalNumberOfItems)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        public bool IsStorageEmpty
+        {
+            get
+            {
+                if (storagequeue.Count() <= 0)
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
 

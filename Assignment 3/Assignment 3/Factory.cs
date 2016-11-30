@@ -11,11 +11,14 @@ namespace Assignment_3
     {
         private int count;
         private int from, to;
+        private bool produce;
         private FoodItem[] foodbuffer;
         private Random random = new Random();
+        private Storage mainStorge;
 
-        public Factory(int count, int from, int to)
+        public Factory(Storage storage, int count, int from, int to)
         {
+            mainStorge = storage;
             this.count = count;
             this.from = from;
             this.to = to;
@@ -26,15 +29,26 @@ namespace Assignment_3
         public void Produce()
         {
 
-            if (count != 10)
+            if (mainStorge.IsStorageFull == false && ShouldProduce == true)
             {
                 int temp = random.Next(from, to);
-                ProducedFood(temp);
-                count++;
+                mainStorge.AddToStorage(ProducedFood(temp));
+            }
+
+            else if (mainStorge.IsStorageFull == true && ShouldProduce == false)
+            {
 
             }
 
+        }
 
+        public bool ShouldProduce
+        {
+            get { return produce; }
+            set
+            {
+                produce = value;
+            }
         }
 
         public FoodItem ProducedFood(int FoodBufferPosition)
