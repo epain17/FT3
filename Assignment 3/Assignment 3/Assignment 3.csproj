@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Factory.cs" />
     <Compile Include="FoodItem.cs" />
+    <Compile Include="FoodList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Truck.cs" />

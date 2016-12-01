@@ -4,42 +4,56 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Assignment_3
 {
     class Factory
     {
-        private int count;
         private int from, to;
         private bool produce;
-        private FoodItem[] foodbuffer;
         private Random random = new Random();
         private Storage mainStorge;
+        Label producerLabel;
+        FoodList foodList;
 
-        public Factory(Storage storage, int count, int from, int to)
+        public Factory(Storage storage, int from, int to, Label pL, FoodList foodList)
         {
             mainStorge = storage;
-            this.count = count;
             this.from = from;
             this.to = to;
-            foodbuffer = new FoodItem[count];
-            FoodItems();
+            producerLabel = pL;
+            this.foodList = foodList;
         }
 
         public void Produce()
         {
-
-            if (mainStorge.IsStorageFull == false && ShouldProduce == true)
+           while (ShouldProduce == true)
             {
                 int temp = random.Next(from, to);
-                mainStorge.AddToStorage(ProducedFood(temp));
+                mainStorge.AddToStorage(ProducedFood(temp), producerLabel);
+                if(ShouldProduce == false)
+                {
+                    StopProduction();
+                }
             }
 
-            else if (mainStorge.IsStorageFull == true && ShouldProduce == false)
+        }
+
+        public void StopProduction()
+        {
+            while(ShouldProduce == false)
             {
-
+                if(ShouldProduce == true)
+                {
+                    Produce();
+                }
             }
+        }
 
+        public FoodItem ProducedFood(int FoodBufferPosition)
+        {
+            return foodList.Food(FoodBufferPosition);
         }
 
         public bool ShouldProduce
@@ -51,26 +65,7 @@ namespace Assignment_3
             }
         }
 
-        public FoodItem ProducedFood(int FoodBufferPosition)
-        {
-            return foodbuffer[FoodBufferPosition];
-        }
-
-        private void FoodItems()
-        {
-            //Ändra vikt och volym
-            foodbuffer[0] = new FoodItem("Mjök", 1, 1.5f);
-            foodbuffer[1] = new FoodItem("Fil", 1, 1f);
-            foodbuffer[2] = new FoodItem("Grädde", 0.3f, 0.5f);
-            foodbuffer[3] = new FoodItem("HavreGryn", 1, 3f);
-            foodbuffer[4] = new FoodItem("Vetekli", 2, 3f);
-            foodbuffer[5] = new FoodItem("Vetemjöl", 2, 3f);
-            foodbuffer[6] = new FoodItem("Skinka", 1, 1.5f);
-            foodbuffer[7] = new FoodItem("Köttbullar", 1, 1.5f);
-            foodbuffer[8] = new FoodItem("Prinskorv", 1, 1.5f);
-            foodbuffer[9] = new FoodItem("Falukorv", 1, 1.5f);
-
-        }
+     
 
     }
 }

@@ -63,7 +63,7 @@
             this.IcaItems = new System.Windows.Forms.Label();
             this.IcaWeight = new System.Windows.Forms.Label();
             this.volumeIca = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ItemsICA = new System.Windows.Forms.Label();
             this.WeightICA = new System.Windows.Forms.Label();
             this.IcaVolume = new System.Windows.Forms.Label();
             this.IcaStatus = new System.Windows.Forms.Label();
@@ -90,6 +90,7 @@
             this.CoopCheck = new System.Windows.Forms.CheckBox();
             this.CoopStartLoad = new System.Windows.Forms.Button();
             this.CoopStopLoad = new System.Windows.Forms.Button();
+            this.StorageCapacity = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.ProducersBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConsumersBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ScanBoxProd)).BeginInit();
@@ -212,6 +213,7 @@
             this.ScanStart.TabIndex = 12;
             this.ScanStart.Text = "Start";
             this.ScanStart.UseVisualStyleBackColor = true;
+            this.ScanStart.Click += new System.EventHandler(this.ScanStart_Click);
             // 
             // ScanStop
             // 
@@ -221,6 +223,7 @@
             this.ScanStop.TabIndex = 13;
             this.ScanStop.Text = "Stop";
             this.ScanStop.UseVisualStyleBackColor = true;
+            this.ScanStop.Click += new System.EventHandler(this.ScanStop_Click);
             // 
             // StartArla
             // 
@@ -231,6 +234,7 @@
             this.StartArla.Text = "Start";
             this.StartArla.UseMnemonic = false;
             this.StartArla.UseVisualStyleBackColor = true;
+            this.StartArla.Click += new System.EventHandler(this.StartArla_Click);
             // 
             // StopArla
             // 
@@ -240,6 +244,7 @@
             this.StopArla.TabIndex = 15;
             this.StopArla.Text = "Stop";
             this.StopArla.UseVisualStyleBackColor = true;
+            this.StopArla.Click += new System.EventHandler(this.StopArla_Click);
             // 
             // StartAxFood
             // 
@@ -405,14 +410,14 @@
             this.volumeIca.TabIndex = 34;
             this.volumeIca.Text = "Volume:";
             // 
-            // label1
+            // ItemsICA
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(420, 84);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(13, 13);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "0";
+            this.ItemsICA.AutoSize = true;
+            this.ItemsICA.Location = new System.Drawing.Point(420, 84);
+            this.ItemsICA.Name = "ItemsICA";
+            this.ItemsICA.Size = new System.Drawing.Size(13, 13);
+            this.ItemsICA.TabIndex = 35;
+            this.ItemsICA.Text = "0";
             // 
             // WeightICA
             // 
@@ -458,6 +463,7 @@
             this.StartLoadICA.TabIndex = 40;
             this.StartLoadICA.Text = "Start Loading ";
             this.StartLoadICA.UseVisualStyleBackColor = true;
+            this.StartLoadICA.Click += new System.EventHandler(this.StartLoadICA_Click);
             // 
             // StopLoadICA
             // 
@@ -467,6 +473,7 @@
             this.StopLoadICA.TabIndex = 41;
             this.StopLoadICA.Text = "Stop";
             this.StopLoadICA.UseVisualStyleBackColor = true;
+            this.StopLoadICA.Click += new System.EventHandler(this.StopLoadICA_Click);
             // 
             // CoopItems
             // 
@@ -648,11 +655,20 @@
             this.CoopStopLoad.Text = "Stop";
             this.CoopStopLoad.UseVisualStyleBackColor = true;
             // 
+            // StorageCapacity
+            // 
+            this.StorageCapacity.Location = new System.Drawing.Point(57, 520);
+            this.StorageCapacity.Maximum = 50;
+            this.StorageCapacity.Name = "StorageCapacity";
+            this.StorageCapacity.Size = new System.Drawing.Size(829, 23);
+            this.StorageCapacity.TabIndex = 62;
+            // 
             // Assignment3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(935, 599);
+            this.Controls.Add(this.StorageCapacity);
             this.Controls.Add(this.CoopStopLoad);
             this.Controls.Add(this.CoopStartLoad);
             this.Controls.Add(this.CoopCheck);
@@ -679,7 +695,7 @@
             this.Controls.Add(this.IcaStatus);
             this.Controls.Add(this.IcaVolume);
             this.Controls.Add(this.WeightICA);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ItemsICA);
             this.Controls.Add(this.volumeIca);
             this.Controls.Add(this.IcaWeight);
             this.Controls.Add(this.IcaItems);
@@ -768,7 +784,7 @@
         private System.Windows.Forms.Label IcaItems;
         private System.Windows.Forms.Label IcaWeight;
         private System.Windows.Forms.Label volumeIca;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ItemsICA;
         private System.Windows.Forms.Label WeightICA;
         private System.Windows.Forms.Label IcaVolume;
         private System.Windows.Forms.Label IcaStatus;
@@ -795,6 +811,7 @@
         private System.Windows.Forms.CheckBox CoopCheck;
         private System.Windows.Forms.Button CoopStartLoad;
         private System.Windows.Forms.Button CoopStopLoad;
+        private System.Windows.Forms.ProgressBar StorageCapacity;
     }
 }
 

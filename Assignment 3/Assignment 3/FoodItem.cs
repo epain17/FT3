@@ -28,5 +28,10 @@ namespace Assignment_3
         {
             get { return volume; }
         }
+
+        public string GetName
+        {
+            get { return name; }
+        }
     }
 }

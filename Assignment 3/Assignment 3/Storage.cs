@@ -4,52 +4,73 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Assignment_3
 {
     class Storage
     {
-        private Queue<FoodItem> storagequeue = new Queue<FoodItem>();
-        private int totalNumberOfItems;
+        private Queue<FoodItem> storagequeue;
+        private int totalNumberOfItems, currentNumberOfItems;
         private float totalWeigth;
         private float totalVolume;
-        private Mutex m = new Mutex();
+        private Mutex myMutex = new Mutex();
+        private static Semaphore writeSemaphore, readSemphore;
+        private ProgressBar progressBar;
 
-        public Storage(int NumberOfITems, float TotalWeight, float TotalVolume)
+
+        public Storage(ProgressBar pb)
         {
-            totalNumberOfItems = NumberOfITems;
-            totalWeigth = TotalWeight;
-            totalVolume = TotalVolume;
+            totalNumberOfItems = 50;
+            currentNumberOfItems = 0;
+            totalWeigth = 100;
+            totalVolume = 150;
+
+
+            storagequeue = new Queue<FoodItem>();
+            myMutex = new Mutex();
+            readSemphore = new Semaphore(0, (int)totalNumberOfItems);
+            writeSemaphore = new Semaphore((int)totalNumberOfItems, (int)totalNumberOfItems);
+
+            progressBar = pb;
+
         }
 
-        public void AddToStorage(FoodItem Food)
-        {
-            //Kanske måste lägga till if statements för att 
-            //kolla maximala vikten och volumen för lagret
-            m.WaitOne();
-            if (storagequeue.Count() != totalNumberOfItems)
-            {
-                totalWeigth += Food.GetWeight;
-                totalVolume += Food.GetVolume;
-                storagequeue.Enqueue(Food);
-            }
-            m.ReleaseMutex();
+        public void AddToStorage(FoodItem Food, Label producerLabel)
+        {     
+            producerLabel.Invoke(new Action(delegate () { producerLabel.Text = "Status: Waiting"; }));
+            writeSemaphore.WaitOne();    
+            myMutex.WaitOne(100);
+            producerLabel.Invoke(new Action(delegate () { producerLabel.Text = "Status: Producing"; }));         
+            storagequeue.Enqueue(Food);
+
+            ++currentNumberOfItems;
+            totalWeigth += Food.GetWeight;
+            totalVolume += Food.GetVolume;
+            progressBar.Invoke(new Action(delegate () { progressBar.Increment(1); }));
+
+            readSemphore.Release();
+            myMutex.ReleaseMutex();
+            Thread.Sleep(100);
         }
 
         public FoodItem RemoveFromStorage()
         {
-            if (storagequeue.Count() != 0)
-            {
-                m.WaitOne();
-                FoodItem temp = storagequeue.Dequeue();
+           
+            readSemphore.WaitOne();
+            myMutex.WaitOne(100);
+            FoodItem itemToDequeue = storagequeue.Dequeue();
 
+            --currentNumberOfItems;
+            totalWeigth -= itemToDequeue.GetWeight;
+            totalVolume -= itemToDequeue.GetVolume;
+            progressBar.Invoke(new Action(delegate () { progressBar.Increment(-1); }));
 
-                totalWeigth -= temp.GetWeight;
-                totalVolume -= temp.GetVolume;
-                m.ReleaseMutex();
-                return temp;
-            }
-            return null;
+            writeSemaphore.Release();
+            myMutex.ReleaseMutex();
+            Thread.Sleep(100);
+            return itemToDequeue;
+     
         }
 
         public int StorageCapacity
@@ -57,30 +78,29 @@ namespace Assignment_3
             get { return totalNumberOfItems; }
         }
 
-        public bool IsStorageFull
-        {
-            get
-            {
-                if (storagequeue.Count() != totalNumberOfItems)
-                {
-                    return true;
-                }
-
-                return false;
-            }
-        }
-
-        public bool IsStorageEmpty
+        public int StorageStatus
         {
             get
             {
                 if (storagequeue.Count() <= 0)
                 {
-                    return true;
+                    return 0;
                 }
-                return false;
+                else if(currentNumberOfItems == totalNumberOfItems)
+                {
+                    return  1;
+                }
+                else
+                {
+                    return 2;
+                }
+
+
+               
             }
         }
+
+
 
 
     }

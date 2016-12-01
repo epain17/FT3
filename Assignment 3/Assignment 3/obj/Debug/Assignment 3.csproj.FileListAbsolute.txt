@@ -1,2 +1,10 @@
 C:\Users\Emil\Documents\Visual Studio 2015\Projects\Assignment 3\Assignment 3\bin\Debug\Assignment 3.exe.config
 C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\bin\Debug\Assignment 3.exe.config
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\bin\Debug\Assignment 3.exe
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\bin\Debug\Assignment 3.pdb
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\obj\Debug\Assignment 3.csprojResolveAssemblyReference.cache
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\obj\Debug\Assignment_3.Assignment3.resources
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\obj\Debug\Assignment_3.Properties.Resources.resources
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\obj\Debug\Assignment 3.csproj.GenerateResource.Cache
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\obj\Debug\Assignment 3.exe
+C:\Users\Emil\Documents\GitHub\FT3\Assignment 3\Assignment 3\obj\Debug\Assignment 3.pdb
