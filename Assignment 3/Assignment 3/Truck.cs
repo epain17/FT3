@@ -36,8 +36,9 @@ namespace Assignment_3
 
             totalGoodLabel = l1;
             loadedGoods = lb;
+            loadTruck = false;
 
-            
+
 
             //l2 = totalWeigthLabel;
             //l3 = totalVolumeLabel;
@@ -55,23 +56,22 @@ namespace Assignment_3
                     ++currentNrGoods;
                     totalGoodLabel.Invoke(new Action(delegate () { totalGoodLabel.Text = currentNrGoods.ToString(); }));
                     loadedGoods.Invoke(new DisplayDelegate(DisplayString), new object[] { foodInTruck[i].GetName, loadedGoods });
-                  
+                    Thread.Sleep(rand.Next(100, 1000));
+
                 }
                 LoadOff();
-
             }
             else
             {
-                while(LoadingTruck == false)
-                {
-                    if(LoadingTruck == true)
-                    {
-                        LoadTruck();
-                    }
-                }
+                Wait();
             }
         }
+        private void Wait()
+        {
+            while (LoadingTruck == false) { }
+            LoadTruck();
 
+        }
         private void DisplayString(string s, ListBox listBox)
         {
             listBox.Items.Add(s);

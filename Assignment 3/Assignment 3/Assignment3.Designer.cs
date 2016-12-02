@@ -254,6 +254,7 @@
             this.StartAxFood.TabIndex = 16;
             this.StartAxFood.Text = "Start";
             this.StartAxFood.UseVisualStyleBackColor = true;
+            this.StartAxFood.Click += new System.EventHandler(this.StartAxFood_Click);
             // 
             // StopAxfood
             // 
@@ -263,6 +264,7 @@
             this.StopAxfood.TabIndex = 17;
             this.StopAxfood.Text = "Stop";
             this.StopAxfood.UseVisualStyleBackColor = true;
+            this.StopAxfood.Click += new System.EventHandler(this.StopAxfood_Click);
             // 
             // ConsumerLable
             // 
@@ -609,6 +611,7 @@
             this.CGStartLoad.TabIndex = 56;
             this.CGStartLoad.Text = "Start Loading ";
             this.CGStartLoad.UseVisualStyleBackColor = true;
+            this.CGStartLoad.Click += new System.EventHandler(this.CGStartLoad_Click);
             // 
             // CGStop
             // 
@@ -618,6 +621,7 @@
             this.CGStop.TabIndex = 57;
             this.CGStop.Text = "Stop";
             this.CGStop.UseVisualStyleBackColor = true;
+            this.CGStop.Click += new System.EventHandler(this.CGStop_Click);
             // 
             // CoopStatus
             // 
@@ -645,6 +649,7 @@
             this.CoopStartLoad.TabIndex = 60;
             this.CoopStartLoad.Text = "Start Loading ";
             this.CoopStartLoad.UseVisualStyleBackColor = true;
+            this.CoopStartLoad.Click += new System.EventHandler(this.CoopStartLoad_Click);
             // 
             // CoopStopLoad
             // 
@@ -654,6 +659,7 @@
             this.CoopStopLoad.TabIndex = 61;
             this.CoopStopLoad.Text = "Stop";
             this.CoopStopLoad.UseVisualStyleBackColor = true;
+            this.CoopStopLoad.Click += new System.EventHandler(this.CoopStopLoad_Click);
             // 
             // StorageCapacity
             // 

@@ -24,31 +24,32 @@ namespace Assignment_3
             this.to = to;
             producerLabel = pL;
             this.foodList = foodList;
+            produce = false;
+
         }
 
         public void Produce()
         {
-           while (ShouldProduce == true)
+            Console.WriteLine(Thread.CurrentThread.Name + " Started");
+
+            while (ShouldProduce == true)
             {
                 int temp = random.Next(from, to);
                 mainStorge.AddToStorage(ProducedFood(temp), producerLabel);
-                if(ShouldProduce == false)
-                {
-                    StopProduction();
-                }
+                Thread.Sleep(random.Next(100, 1000));
             }
-
+            StopProduction(producerLabel);
         }
 
-        public void StopProduction()
+        public void StopProduction(Label label)
         {
-            while(ShouldProduce == false)
-            {
-                if(ShouldProduce == true)
-                {
-                    Produce();
-                }
-            }
+            Console.WriteLine(Thread.CurrentThread.Name + " Stopped");
+
+
+            while (ShouldProduce == false) {  }
+            Produce();
+
+
         }
 
         public FoodItem ProducedFood(int FoodBufferPosition)
@@ -65,7 +66,7 @@ namespace Assignment_3
             }
         }
 
-     
+
 
     }
 }
