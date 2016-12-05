@@ -68,7 +68,7 @@ namespace Assignment_3
         }
         private void Wait()
         {
-            while (LoadingTruck == false) { }
+            while (LoadingTruck == false) { Thread.Sleep(rand.Next(100, 400)); }
             LoadTruck();
 
         }

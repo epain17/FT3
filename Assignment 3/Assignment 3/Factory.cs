@@ -46,7 +46,7 @@ namespace Assignment_3
             Console.WriteLine(Thread.CurrentThread.Name + " Stopped");
 
 
-            while (ShouldProduce == false) {  }
+            while (ShouldProduce == false) { Thread.Sleep(random.Next(100, 400)); }
             Produce();
 
 
