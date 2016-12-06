@@ -134,9 +134,9 @@ namespace Assignment_3
             AxaFood = new Factory(mainStorage, 3, 5, StatusAxFood, foodList);
             
 
-            ICA = new Truck(mainStorage, 10, ItemsICA, IcaListbox);
-            Coop = new Truck(mainStorage, 12, CoopUnits, CoopListbox);
-            CityGross = new Truck(mainStorage, 5, CGItems, CityGrossListbox);
+            ICA = new Truck(mainStorage, 10, 12, 15, ItemsICA, WeightICA, IcaVolume, IcaListbox);
+            Coop = new Truck(mainStorage, 12, 5, 20, CoopUnits, CoopWeight, VolumeUnitCoop, CoopListbox);
+            CityGross = new Truck(mainStorage, 5, 20, 4, CGUnitItem, CGunitWeight, CGUnitVolume, CityGrossListbox);
 
            
         }
