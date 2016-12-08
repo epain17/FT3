@@ -12,15 +12,18 @@ namespace Assignment_3
     {
         int currentNrGoods;
         float currentNrWeight, currentNrVolume;
+
         int totalGoods;
         float totalWeight;
         float totalVolume;
+
         Storage storage;
-        bool loadTruck;
         FoodItem[] foodInTruck;
         Random rand = new Random();
+
         Label totalGoodLabel, totalWeigthLabel, totalVolumeLabel;
         ListBox loadedGoods;
+        bool loadTruck;
 
         private delegate void DisplayDelegate(string s, ListBox listBox);
 
@@ -45,12 +48,21 @@ namespace Assignment_3
             this.totalVolume = totalVolume;
         }
 
+        /// <summary>
+        /// Lägger till objekt från storage till truck. Kollar så att inte kön är full och kör sedan en for loop. Denna avbryts om maximal vikt, volym eller antal fooditems på trucken överskrider eller om 
+        /// storage är tomt. 
+        /// Tråden sätts då i Wait.
+        /// </summary>
         public void LoadTruck()
         {
             if (storage.StorageStatus != 0 && LoadingTruck == true)
             {
                 for (int i = 0 + currentNrGoods; i < totalGoods; i++)
                 {
+                    if(storage.StorageStatus == 0)
+                    {
+                        break;
+                    }
                     foodInTruck[i] = FoodFromStorage();
 
                     if (currentNrWeight + foodInTruck[i].GetWeight > totalWeight || currentNrVolume + foodInTruck[i].GetVolume > totalVolume)
@@ -70,6 +82,11 @@ namespace Assignment_3
 
                 }
                 LoadOff();
+            }
+            else if(storage.StorageStatus == 0)
+            {
+                LoadingTruck = false;
+                Wait();
             }
             else
             {

@@ -11,11 +11,14 @@ namespace Assignment_3
     class Storage
     {
         private Queue<FoodItem> storagequeue;
+
         private int totalNumberOfItems, currentNumberOfItems;
         private float totalWeigth;
         private float totalVolume;
+
         private Mutex myMutex = new Mutex();
         private static Semaphore writeSemaphore, readSemphore;
+
         private ProgressBar progressBar;
 
 
@@ -36,6 +39,14 @@ namespace Assignment_3
 
         }
 
+        /// <summary>
+        /// Metoden lägger till FoodItems i Storage, Semaforen används som en kö för trådarna och håller koll på antalet obejkt som lagts till.
+        /// En efter en släpps dom in men bara en åt gången kan göra ändringar pga mutexet. 
+        /// Ett label ändras beroende på om en tråda står i kö eller producerar.
+        /// 
+        /// </summary>
+        /// <param name="Food"></param>
+        /// <param name="producerLabel"></param>
         public void AddToStorage(FoodItem Food, Label producerLabel)
         {     
             producerLabel.Invoke(new Action(delegate () { producerLabel.Text = "Status: Waiting"; }));
@@ -54,6 +65,11 @@ namespace Assignment_3
             Thread.Sleep(100);
         }
 
+        /// <summary>
+        /// En tråd åt gången får gå in och göra ändringar i storage. Semaphoren håller koll på om det finns något i kön mutexet 
+        /// tar hand om mutal exlusion
+        /// </summary>
+        /// <returns></returns>
         public FoodItem RemoveFromStorage()
         {
            
@@ -82,7 +98,7 @@ namespace Assignment_3
         {
             get
             {
-                if (storagequeue.Count() <= 0)
+                if (storagequeue.Count() <= 0 ||storagequeue == null)
                 {
                     return 0;
                 }
