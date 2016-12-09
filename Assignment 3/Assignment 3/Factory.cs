@@ -28,6 +28,9 @@ namespace Assignment_3
 
         }
 
+        /// <summary>
+        /// producerar och lägger till fooditems i Storage
+        /// </summary>
         public void Produce()
         {
             Console.WriteLine(Thread.CurrentThread.Name + " Started");
@@ -41,6 +44,10 @@ namespace Assignment_3
             StopProduction(producerLabel);
         }
 
+        /// <summary>
+        /// stopper produktion sålänge shouldproduce är false
+        /// </summary>
+        /// <param name="label"></param>
         public void StopProduction(Label label)
         {
             Console.WriteLine(Thread.CurrentThread.Name + " Stopped");
@@ -52,11 +59,19 @@ namespace Assignment_3
 
         }
 
+        /// <summary>
+        /// hämtar ett fooditem från foodlist
+        /// </summary>
+        /// <param name="FoodBufferPosition"></param>
+        /// <returns></returns>
         public FoodItem ProducedFood(int FoodBufferPosition)
         {
             return foodList.Food(FoodBufferPosition);
         }
 
+        /// <summary>
+        /// ändrar boolen produce
+        /// </summary>
         public bool ShouldProduce
         {
             get { return produce; }

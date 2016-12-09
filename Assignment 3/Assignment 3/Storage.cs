@@ -89,35 +89,5 @@ namespace Assignment_3
      
         }
 
-        public int StorageCapacity
-        {
-            get { return totalNumberOfItems; }
-        }
-
-        public int StorageStatus
-        {
-            get
-            {
-                if (storagequeue.Count() <= 0 ||storagequeue == null)
-                {
-                    return 0;
-                }
-                else if(currentNumberOfItems == totalNumberOfItems)
-                {
-                    return  1;
-                }
-                else
-                {
-                    return 2;
-                }
-
-
-               
-            }
-        }
-
-
-
-
     }
 }

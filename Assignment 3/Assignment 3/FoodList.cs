@@ -16,6 +16,7 @@ namespace Assignment_3
             FoodItems();
         }
 
+       
         public void FoodItems()
         {
             foodList[0] = new FoodItem("Mjök", 1, 1.5f);

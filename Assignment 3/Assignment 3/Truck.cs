@@ -21,14 +21,14 @@ namespace Assignment_3
         FoodItem[] foodInTruck;
         Random rand = new Random();
 
-        Label totalGoodLabel, totalWeigthLabel, totalVolumeLabel;
+        Label totalGoodLabel, totalWeigthLabel, totalVolumeLabel, statusLabel;
         ListBox loadedGoods;
         bool loadTruck;
 
         private delegate void DisplayDelegate(string s, ListBox listBox);
 
         public Truck(Storage storage, int totalGoods, float totalWeight, float totalVolume,
-            Label l1, Label l2, Label l3, ListBox lb)
+            Label l1, Label l2, Label l3, Label status, ListBox lb)
         {
             this.storage = storage;
             this.totalGoods = totalGoods;
@@ -44,31 +44,33 @@ namespace Assignment_3
 
             totalWeigthLabel = l2;
             totalVolumeLabel = l3;
+            statusLabel = status;
             this.totalWeight = totalWeight;
             this.totalVolume = totalVolume;
         }
 
         /// <summary>
-        /// Lägger till objekt från storage till truck. Kollar så att inte kön är full och kör sedan en for loop. Denna avbryts om maximal vikt, volym eller antal fooditems på trucken överskrider eller om 
+        /// Lägger till objekt från storage till truck. 
+        /// Kollar så att inte kön är full och kör sedan en for loop. 
+        /// Denna avbryts om maximal vikt, volym eller antal fooditems på trucken överskrider eller om 
         /// storage är tomt. 
         /// Tråden sätts då i Wait.
         /// </summary>
         public void LoadTruck()
         {
-            if (storage.StorageStatus != 0 && LoadingTruck == true)
+            if (LoadingTruck == true)
             {
                 for (int i = 0 + currentNrGoods; i < totalGoods; i++)
                 {
-                    if(storage.StorageStatus == 0)
-                    {
-                        break;
-                    }
+
                     foodInTruck[i] = FoodFromStorage();
 
                     if (currentNrWeight + foodInTruck[i].GetWeight > totalWeight || currentNrVolume + foodInTruck[i].GetVolume > totalVolume)
                     {
                         break;
                     }
+
+                    statusLabel.Invoke(new Action(delegate () { statusLabel.Text = "Status: Loading"; }));
                     ++currentNrGoods;
                     currentNrWeight += foodInTruck[i].GetWeight;
                     currentNrVolume += foodInTruck[i].GetVolume;
@@ -81,30 +83,42 @@ namespace Assignment_3
                     Thread.Sleep(rand.Next(100, 1000));
 
                 }
+                statusLabel.Invoke(new Action(delegate () { statusLabel.Text = "Status: Unloading"; }));
+
                 LoadOff();
             }
-            else if(storage.StorageStatus == 0)
-            {
-                LoadingTruck = false;
-                Wait();
-            }
+   
             else
             {
                 Wait();
             }
         }
+
+        /// <summary>
+        /// Sätter tråden i vänt läge tills boolen ändras
+        /// </summary>
         private void Wait()
         {
+            statusLabel.Invoke(new Action(delegate () { statusLabel.Text = "Status: Waiting"; }));
+
             while (LoadingTruck == false) { Thread.Sleep(rand.Next(100, 400)); }
             LoadTruck();
 
         }
 
+        /// <summary>
+        /// metod som kallar på metod i Storage
+        /// </summary>
+        /// <returns></returns>
         public FoodItem FoodFromStorage()
         {
             return storage.RemoveFromStorage();
         }
 
+        /// <summary>
+        /// Rensar listboxes och ställer om alla current värden till 0.
+        /// tråden sätts i sleep sen körs loadtruck igen.
+        /// </summary>
         public void LoadOff()
         {
 
@@ -113,11 +127,14 @@ namespace Assignment_3
             currentNrGoods = 0;
             currentNrWeight = 0;
             currentNrVolume = 0;
-            Thread.Sleep(rand.Next(100, 2000));
+            Thread.Sleep(rand.Next(4000,5000));
             LoadTruck();
 
         }
 
+        /// <summary>
+        /// property för boolen loadtruck
+        /// </summary>
         public bool LoadingTruck
         {
             get { return loadTruck; }
